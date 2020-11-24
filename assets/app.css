@@ -1,0 +1,44 @@
+body{
+    background: #0d1521;
+    font-family: tahoma;
+    color: #989898;
+}
+
+#todo-table{
+    position: relative;
+    width: 95%;
+    background: #090d13;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#todo-table form:after{
+    margin: 0;
+    content: '';
+    display: block;
+    clear: both;
+}
+
+input[type="text"]{
+    width: 70%;
+    padding: 20px;
+    background:#181c22;
+    border: 0;
+    float: left;
+    font-size: 20px;
+    color: #989898;
+}
+
+button{
+    padding: 20px;
+    width: 30%;
+    float: left;
+    background: #23282e;
+    border: 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+}
+

@@ -1,0 +1,116 @@
+<html>
+<head>
+    <title>Generate Data</title>
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <style>
+    body{
+    background: #0d1521;
+    font-family: tahoma;
+    color: #989898;
+}
+
+#todo-table{
+    position: relative;
+    width: 95%;
+    background: #090d13;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#todo-table form:after{
+    margin: 0;
+    content: '';
+    display: block;
+    clear: both;
+}
+
+input[type="text"]{
+    width: 70%;
+    padding: 20px;
+    background:#181c22;
+    border: 0;
+    float: left;
+    font-size: 20px;
+    color: #989898;
+}
+
+button{
+    padding: 83px;
+    width: 30%;
+    /* float: left; */
+    background: #23282e;
+    border: 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+}
+ul {
+  list-style-type: none;
+}
+</style>
+</head>
+<body>
+    <div id="todo-table">
+        <form >
+            <input type="text" id="levels" placeholder="Enter Number of levels..." required>
+            <input type="text" id="nodes" placeholder="Enter Number of nodes..." required>
+            <input type="text" id="nodesLevel1" placeholder="Enter Number of nodes in 1st Level..." required>
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+    <div id="result">
+        <ul>
+        <%displayArr.forEach(element=>{ %>
+            <li><%=element._id %> </li>
+            <%var dashes = "";%>
+            <% if(element.children!=[]) {  %>
+                <% var child = Array.from(element.children);%>
+                    <% while(child.length>0){ %>
+                        <ul>
+                            <li><%=dashes+child[0]._id%></li>
+                            <%dashes+="-----"%>
+                        </ul>
+                            <% if((Array.from(child[0].children)).length>0) %>
+                            <% child = Array.from(child[0].children); %>
+                    <% } %>
+            <% }%>
+        <% }); %>
+        </ul>
+    </div>
+    <div id="JSTree">
+        <%displayArr.forEach(element=>{ %>
+            <pre><code><%= JSON.stringify(element,null,2) %></code></pre>
+            <% }); %>
+    </div>
+    
+    
+    <script>
+    $(document).ready(function(){
+
+            $('form').on('submit',function(){
+            var nLevels = $("#levels").val(); 
+            var nNodes = $("#nodes").val();
+            var nNodesL1 = $("#nodesLevel1").val();
+
+            $.ajax({
+                type:'POST',
+                url:'/index',
+                data : {nLevels,nNodes,nNodesL1},
+                success : function(data){
+                    location.reload();
+                }
+                
+            });
+            return false;
+        });
+
+              
+    });
+    </script>
+</body>
+</html>

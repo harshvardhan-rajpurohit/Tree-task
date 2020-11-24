@@ -1,0 +1,18 @@
+{
+  "name": "task_static_vals",
+  "version": "1.0.0",
+  "description": "Values are randomly generated and thus just displayed using an api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "me",
+  "license": "ISC",
+  "dependencies": {
+    "array-to-tree": "^3.3.2",
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15"
+  }
+}
